@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "GenToken4ID";
+    Layout = null;
+    var strEncodeID = ViewBag.strEncodeID;
+
+}
+@if (TempData["message"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        alert(message);
+    </script>
+}
+@if (strEncodeID != null)
+{
+    <div>token：@strEncodeID</div>
+}
+

@@ -1,0 +1,615 @@
+﻿@model List<FTIS_IDCARD.Models.IDcard>
+@{
+    ViewBag.Title = "IDCard";
+    Layout = null;
+    var strEncodeID = ViewBag.strEncodeID;
+    var strDecodeID = ViewBag.strDecodeID;
+    var isPhoto = ViewBag.isPhoto;
+    var isEN = ViewBag.isen;
+}
+<style type="text/css">
+    <!--
+    html {
+        font-size: 16px;
+    }
+
+    body {
+        color: #333;
+        /*font-family: Microsoft JhengHei;*/
+    }
+
+    .gallery {
+        position: relative;
+    }
+
+    .backGround-Content {
+        width: 100%;
+        /*max-height:100vh;*/
+        height: auto;
+        z-index: -999;
+    }
+
+    .Div_Name1 {
+        position: absolute;
+        top: 4vw;
+        right: 26vw;
+        font-size: 6.3vw;
+        font-weight: bold;
+    }
+
+    .Div_EName1 {
+        position: absolute;
+        top: 5vw;
+        right: 4vw;
+        font-size: 4vw;
+        font-weight: bold;
+    }
+
+    .Div_Name2 {
+        position: absolute;
+        top: 4vw;
+        right: 15vw;
+        font-size: 6.3vw;
+        font-weight: bold;
+    }
+
+    .Div_Name3 {
+        position: absolute;
+        top: 4vw;
+        right: 4vw;
+        font-size: 6.3vw;
+        font-weight: bold;
+    }
+
+    .Div_Title {
+        position: absolute;
+        top: 12.8vw;
+        right: 4vw;
+        font-size: 3vw;
+        font-weight: bold;
+    }
+
+    .Div_ETitle {
+        position: absolute;
+        top: 10vw;
+        right: 4vw;
+        font-size: 3vw;
+    }
+
+    .Div_DName {
+        position: absolute;
+        top: 17vw;
+        right: 4vw;
+        font-size: 3vw;
+        font-weight: bold;
+    }
+
+    .Div_EDName {
+        position: absolute;
+        top: 14vw;
+        right: 4vw;
+        font-size: 3vw;
+    }
+
+    .Div_Name1_1 {
+        position: absolute;
+        top: 4vw;
+        right: 46vw;
+        font-size: 6.3vw;
+        font-weight: bold;
+    }
+
+    .Div_EName1_1 {
+        position: absolute;
+        top: 5vw;
+        right: 24vw;
+        font-size: 3.5vw;
+        font-weight: bold;
+    }
+
+    .Div_Name2_1 {
+        position: absolute;
+        top: 4vw;
+        right: 35vw;
+        font-size: 6.3vw;
+        font-weight: bold;
+    }
+
+    .Div_Name3_1 {
+        position: absolute;
+        top: 4vw;
+        right: 24vw;
+        font-size: 6.3vw;
+        font-weight: bold;
+    }
+
+    .Div_Title_1 {
+        position: absolute;
+        top: 12.8vw;
+        right: 24vw;
+        font-size: 3vw;
+        font-weight: bold;
+    }
+
+    .Div_ETitle_1 {
+        position: absolute;
+        top: 10vw;
+        right: 24vw;
+        font-size: 3vw;
+    }
+
+    .Div_DName_1 {
+        position: absolute;
+        top: 17vw;
+        right: 24vw;
+        font-size: 3vw;
+        font-weight: bold;
+    }
+
+    .Div_EDName_1 {
+        position: absolute;
+        top: 14vw;
+        right: 24vw;
+        font-size: 3vw;
+    }
+
+    .Div_Telext {
+        position: absolute;
+        top: calc(38vw);
+        left: calc(40.5vw);
+        font-size: 2.9vw;
+    }
+
+    .Div_Fax {
+        position: absolute;
+        top: calc(42vw);
+        left: calc(40.5vw);
+        font-size: 2.9vw;
+    }
+
+    .Div_Mobile {
+        position: absolute;
+        top: calc(46vw);
+        left: calc(40.5vw);
+        font-size: 2.9vw;
+    }
+
+    .Div_EMobile {
+        position: absolute;
+        top: calc(46vw);
+        left: calc(5.5vw);
+        font-size: 2.9vw;
+    }
+
+    .Div_En_Comp {
+        position: absolute;
+        top: calc(31vw - 1em);
+        left: calc(5.5vw);
+        font-size: 3.5vw;
+        font-weight: bold;
+    }
+
+    .Div_Address {
+        position: absolute;
+        top: calc(34vw);
+        left: calc(5.5vw);
+        font-size: 2.9vw;
+    }
+
+    .Div_Tel {
+        position: absolute;
+        top: calc(38vw);
+        left: calc(5.5vw);
+        font-size: 2.9vw;
+    }
+
+    .Div_Hotline {
+        position: absolute;
+        top: calc(42vw);
+        left: calc(5.5vw);
+        font-size: 2.9vw;
+    }
+
+    .Div_Tax {
+        position: absolute;
+        top: calc(46vw);
+        left: calc(5.5vw);
+        font-size: 2.9vw;
+    }
+
+    .Div_EMail {
+        position: absolute;
+        top: calc(50vw);
+        left: calc(5.5vw);
+        font-size: 2.9vw; 
+    }
+
+    .Div_EEMail {
+        position: absolute;
+        top: calc(50vw);
+        left: calc(5.5vw);
+        font-size: 2.9vw;
+    }
+
+    .Div_M_EEMail {
+        position: absolute;
+        top: calc(46vw);
+        left: calc(5.5vw);
+        font-size: 2.9vw;
+    }
+
+    .img_QRCode {
+        width: 15vw;
+        height: 15vw;
+        position: absolute;
+        top: 39vw;
+        right: 3vw;
+    }
+
+    .img_Headshot {
+        width: 17vw;
+        height: 20vw;
+        position: absolute;
+        top: 4vw;
+        right: 4vw;
+    }
+
+    a[href^="tel:"] {
+        color: #333333;
+    }
+
+    @@media (max-width: 768px) {
+        .Div_Telext {
+            top: calc(38vw);
+            left: calc(40.5vw);
+        }
+
+        .Div_Fax {
+            top: calc(42vw);
+            left: calc(40.5vw);
+        }
+
+        .Div_Mobile {
+            top: calc(46vw);
+            left: calc(40.5vw);
+        }
+
+        .Div_EMobile {
+            top: calc(46vw);
+            left: calc(5.5vw);
+        }
+
+        .Div_Address {
+            top: calc(34vw);
+            left: calc(5.5vw);
+        }
+
+        .Div_Tel {
+            top: calc(38vw);
+            left: calc(5.5vw);
+        }
+
+        .Div_Hotline {
+            top: calc(42vw);
+            left: calc(5.5vw);
+        }
+
+        .Div_Tax {
+            top: calc(46vw);
+            left: calc(5.5vw);
+        }
+
+        .Div_EMail {
+            top: calc(50vw);
+            left: calc(5.5vw);
+        }
+
+        .Div_EEMail {
+            top: calc(50vw);
+            left: calc(5.5vw);
+        }
+
+        .Div_M_EEMail {
+            top: calc(46vw);
+            left: calc(5.5vw);
+        }
+    }
+
+    @@media (max-width: 500px) {
+/*        .Div_Name2 {
+            top: 4vw;
+            left: 72vw;
+        }
+
+        .Div_Name3 {
+            top: 4vw;
+            left: 82vw;
+        }*/
+
+/*        .Div_Name2_1 {
+            top: 4vw;
+            left: 42vw;
+        }
+
+        .Div_Name3_1 {
+            top: 4vw;
+            left: 52vw;
+        }*/
+
+/*        .img_Headshot {
+            top: 4vw;
+            left: 69vw;
+        }*/
+
+        .Div_Telext {
+            top: calc(37vw);
+        }
+
+        .Div_Fax {
+            top: calc(41vw);
+        }
+
+        .Div_Mobile {
+            top: calc(45vw);
+        }
+
+        .Div_EMobile {
+            top: calc(45vw);
+        }
+
+        .Div_Address {
+            top: calc(33vw);
+        }
+
+        .Div_Tel {
+            top: calc(37vw);
+        }
+
+        .Div_Hotline {
+            top: calc(41vw);
+        }
+
+        .Div_Tax {
+            top: calc(45vw);
+        }
+
+        .Div_EMail {
+            top: calc(49vw);
+        }
+
+        .Div_EEMail {
+            top: calc(49vw);
+        }
+
+        .Div_M_EEMail {
+            top: calc(45vw);
+        }
+    }
+
+    @@media (max-width: 400px) {
+/*        .Div_Name2 {
+            top: 4vw;
+            left: 71vw;
+        }
+
+        .Div_Name3 {
+            top: 4vw;
+            left: 80vw;
+        }*/
+
+/*        .Div_Name2_1 {
+            top: 4vw;
+            left: 41vw;
+        }
+
+        .Div_Name3_1 {
+            top: 4vw;
+            left: 50vw;
+        }*/
+
+/*        .img_Headshot {
+            top: 4vw;
+            left: 68vw;
+        }*/
+
+        .Div_Telext {
+            top: calc(36vw);
+        }
+
+        .Div_Fax {
+            top: calc(40vw);
+        }
+
+        .Div_Mobile {
+            top: calc(44vw);
+        }
+
+        .Div_EMobile {
+            top: calc(44vw);
+        }
+
+        .Div_Address {
+            top: calc(32vw);
+        }
+
+        .Div_Tel {
+            top: calc(36vw);
+        }
+
+        .Div_Hotline {
+            top: calc(40vw);
+        }
+
+        .Div_Tax {
+            top: calc(44vw);
+        }
+
+        .Div_EMail {
+            top: calc(48vw);
+        }
+
+        .Div_EEMail {
+            top: calc(48vw);
+        }
+
+        .Div_M_EEMail {
+            top: calc(44vw);
+        }
+    }
+    -->
+</style>
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="~/Content/bootstrap.min.css">
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<html>
+<body>
+    @if (TempData["message"] != null)
+    {
+        <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["message"]));
+        alert(message);
+        </script>
+    }
+    else
+    {
+        <div class="container-fluid">
+            <div class="gallery">
+                @if (this.Model != null)
+                //|| this.Model.Count > 0)
+                {
+                    foreach (var pd in this.Model)
+                    {
+                        if (pd != null)
+                        {
+                            if (isEN)
+                            {
+                                <img class="backGround-Content" src="~/Doc/FTIS_Vcard_v4.png" />
+                                <div class="Div_En_Comp" id="Div_En_Comp">FOUNDATION OF TAIWAN INDUSTY SERVICE</div>
+                                <div class="Div_Address" id="Div_Address">1F.,No.14,Aly.39,Lane.198,Siwei Rd.,Taipei 10668,Taiwan</div>
+                                <div class="Div_Telext" id="Div_Telext">Ext.：@pd.Telext</div>
+                                var a_Fax = "tel:+886-2-" + @pd.Fax;
+                                <div class="Div_Fax" id="Div_Fax">Fax：<a href=@a_Fax>@pd.Fax</a></div>
+                                var a_Mobile = @pd.Mobile != null ? "tel:+886-2-" + @pd.Mobile.Substring(1) : "";
+                                var str1_Mobile = @pd.Mobile != null ? isEN ? "Mobile：" : "行動：" : "";
+                                var str2_Mobile = @pd.Mobile != null ? @pd.Mobile.Substring(0) : "";
+                                <div class="Div_EMobile" id="Div_EMobile">@str1_Mobile<a href=@a_Mobile>@str2_Mobile</a></div>
+                                var a_Tel = "tel:+886-2-" + @pd.Tel;
+                                <div class="Div_Tel" id="Div_Tel">Tel：<a href=@a_Tel>@pd.Tel</a></div>
+                                var a_hotline = "tel:+886-2-" + @pd.Hotline;
+                                <div class="Div_Hotline" id="Div_Hotline">Direct：<a href=@a_hotline>@pd.Hotline</a></div>
+                                <div class="Div_Tax" id="Div_Tax"></div>
+                                if (@pd.Mobile != null)
+                                {
+                                    var mailaddress = "mailto:" + @pd.EMail;
+                                    <div class="Div_EEMail" id="Div_EEMail">E-mail：<a href=@mailaddress>@pd.EMail</a></div>
+                                }
+                                else
+                                {
+                                    var mailaddress = "mailto:" + @pd.EMail;
+                                    <div class="Div_M_EEMail" id="Div_M_EEMail">E-mail：<a href=@mailaddress>@pd.EMail</a></div>
+                                }
+                            }
+                            else
+                            {
+                                <img class="backGround-Content" src="~/Doc/FTIS_Vcard_v3.png" />
+                                <div class="Div_Address" id="Div_Address">10668台北市大安區四維路198巷39弄14號1樓</div>
+                                <div class="Div_Telext" id="Div_Telext">分機：@pd.Telext</div>
+                                var a_Fax = "tel:+886-2-" + @pd.Fax;
+                                <div class="Div_Fax" id="Div_Fax">傳真：<a href=@a_Fax>@pd.Fax</a></div>
+                                var a_Mobile = @pd.Mobile != null ? "tel:+886-2-" + @pd.Mobile.Substring(1) : "";
+                                var str1_Mobile = @pd.Mobile != null ? isEN ? "Mobile：" : "行動：" : "";
+                                var str2_Mobile = @pd.Mobile != null ? @pd.Mobile.Substring(0) : "";
+                                <div class="Div_Mobile" id="Div_Mobile">@str1_Mobile<a href=@a_Mobile>@str2_Mobile</a></div>
+                                var a_Tel = "tel:+886-2-" + @pd.Tel;
+                                <div class="Div_Tel" id="Div_Tel">電話：<a href=@a_Tel>@pd.Tel</a></div>
+                                var a_hotline = "tel:+886-2-" + @pd.Hotline;
+                                <div class="Div_Hotline" id="Div_Hotline">專線：<a href=@a_hotline>@pd.Hotline</a></div>
+                                <div class="Div_Tax" id="Div_Tax">統一編號：01801726</div>
+                                var mailaddress = "mailto:" + @pd.EMail;
+                                <div class="Div_EMail" id="Div_EMail">E-mail：<a href=@mailaddress>@pd.EMail</a></div>
+                            }
+
+                            <img class="img_QRCode" src="@Url.Action("QrCodePhotoGet", "Home")" width="120" />
+
+                            if (isPhoto)
+                            {
+                                if (isEN)
+                                {
+                                    <div class="Div_EName1_1" id="Div_EName1_1">@pd.En_Name</div>
+                                    <div class="Div_ETitle_1" id="Div_Title_1">@pd.En_Title</div>
+                                    <div class="Div_EDName_1" id="Div_DName_1">@pd.En_DName</div>
+                                    <img class="img_Headshot" src="@Url.Action("HeadshotGet", "Home")" width="200" />
+                                    var a_Mobile = @pd.Mobile != null ? "tel:+886-2-" + @pd.Mobile.Substring(1) : "";
+                                    var str1_Mobile = @pd.Mobile != null ? isEN ? "Mobile：" : "行動：" : "";
+                                    var str2_Mobile = @pd.Mobile != null ? @pd.Mobile.Substring(0) : "";
+                                    <div class="Div_EMobile" id="Div_EMobile">@str1_Mobile<a href=@a_Mobile>@str2_Mobile</a></div>
+                                    if (@pd.Mobile != null)
+                                    {
+                                        var mailaddress = "mailto:" + @pd.EMail;
+                                        <div class="Div_EEMail" id="Div_EEMail">E-mail：<a href=@mailaddress>@pd.EMail</a></div>
+                                    }
+                                    else
+                                    {
+                                        var mailaddress = "mailto:" + @pd.EMail;
+                                        <div class="Div_M_EEMail" id="Div_M_EEMail">E-mail：<a href=@mailaddress>@pd.EMail</a></div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="Div_Name1_1" id="Div_Name1_1">@pd.Name.Substring(0, 1)</div>
+                                    <div class="Div_Name2_1" id="Div_Name2_1">@pd.Name.Substring(1, 1)</div>
+                                    if (@pd.Name.Length > 2)
+                                    {
+                                        <div class="Div_Name3_1" id="Div_Name3_1">@pd.Name.Substring(2, 1)</div>
+                                    }
+                                    <div class="Div_Title_1" id="Div_Title_1">@pd.Title</div>
+                                    <div class="Div_DName_1" id="Div_DName_1">@pd.DName</div>
+                                    <img class="img_Headshot" src="@Url.Action("HeadshotGet", "Home")" width="200" />
+                                    var mailaddress = "mailto:" + @pd.EMail;
+                                    <div class="Div_EMail" id="Div_EMail">E-mail：<a href=@mailaddress>@pd.EMail</a></div>
+                                }
+                            }
+                            else
+                            {
+                                if (isEN)
+                                {
+                                    <div class="Div_EName1" id="Div_EName1">@pd.En_Name</div>
+                                    <div class="Div_ETitle" id="Div_ETitle">@pd.En_Title</div>
+                                    <div class="Div_EDName" id="Div_EDName">@pd.En_DName</div>
+                                    var a_Mobile = @pd.Mobile != null ? "tel:+886-2-" + @pd.Mobile.Substring(1) : "";
+                                    var str1_Mobile = @pd.Mobile != null ? isEN ? "Mobile：" : "行動：" : "";
+                                    var str2_Mobile = @pd.Mobile != null ? @pd.Mobile.Substring(0) : "";
+                                    <div class="Div_EMobile" id="Div_EMobile">@str1_Mobile<a href=@a_Mobile>@str2_Mobile</a></div>
+                                    if (@pd.Mobile != null)
+                                    {
+                                        var mailaddress = "mailto:" + @pd.EMail;
+                                        <div class="Div_EEMail" id="Div_EEMail">E-mail：<a href=@mailaddress>@pd.EMail</a></div>
+                                    }
+                                    else
+                                    {
+                                        var mailaddress = "mailto:" + @pd.EMail;
+                                        <div class="Div_M_EEMail" id="Div_M_EEMail">E-mail：<a href=@mailaddress>@pd.EMail</a></div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="Div_Name1" id="Div_Name1">@pd.Name.Substring(0, 1)</div>
+                                    <div class="Div_Name2" id="Div_Name2">@pd.Name.Substring(1, 1)</div>
+                                    if (@pd.Name.Length > 2)
+                                    {
+                                        <div class="Div_Name3" id="Div_Name3">@pd.Name.Substring(2, 1)</div>
+                                    }
+                                    <div class="Div_Title" id="Div_Title">@pd.Title</div>
+                                    <div class="Div_DName" id="Div_DName">@pd.DName</div>
+                                }
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+    }
+</body>
+</html>
